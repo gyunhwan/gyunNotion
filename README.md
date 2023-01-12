@@ -13,6 +13,7 @@
 7. 블록은 각각의 url을 가지고 있으며 해당 url을 통해 포커스 될 수 있게 구현 되어야 한다.
 8. 블록의 종류는 노션의 기본블럭(텍스트, 페이지,할일목록,제목,표,글머리기호, 번호,ㅡ토글목록, 인용,구분선, 페이지 링크, 콜아웃)을 따른다.
 9. 블록안 컨텐츠에는 맨션이 가능하며 맨션은 참여자,블록, 페이지, 날짜를 링크 할 수 있다.
+
 타입들 [Page, Block, image, Link, Text]
 model Page {
   object   String    @default("page") // 상위에 정의한 타입들이 될 예정
@@ -65,3 +66,6 @@ type TextContent {
   content String 안에 들어갈 글자
   link    Link?
 }
+
+![image](https://user-images.githubusercontent.com/48306336/212097010-40f71b4f-794c-4c52-991d-be71d52b985a.png)
+
