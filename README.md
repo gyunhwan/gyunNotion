@@ -62,10 +62,19 @@ type Annotations {
 }
 
 type TextContent {
+  id //uuid
   type String //Comment가생각나서 추가
   content String 안에 들어갈 글자
   link    Link?
 }
+type Comment{//노션 특정 부분 드래그 댓글을 위한 구조 
+  comment_id string //uuid
+  user_no sttring // db bigint
+  content string //
+  create_date string
+  update_date string
+}
 
-![image](https://user-images.githubusercontent.com/48306336/212097010-40f71b4f-794c-4c52-991d-be71d52b985a.png)
+![image](https://user-images.githubusercontent.com/48306336/212097764-45ed2058-4c24-40ab-89f3-1fe350b7b923.png)
+
 
