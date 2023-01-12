@@ -13,4 +13,55 @@
 7. 블록은 각각의 url을 가지고 있으며 해당 url을 통해 포커스 될 수 있게 구현 되어야 한다.
 8. 블록의 종류는 노션의 기본블럭(텍스트, 페이지,할일목록,제목,표,글머리기호, 번호,ㅡ토글목록, 인용,구분선, 페이지 링크, 콜아웃)을 따른다.
 9. 블록안 컨텐츠에는 맨션이 가능하며 맨션은 참여자,블록, 페이지, 날짜를 링크 할 수 있다.
+타입들 [Page, Block, image, Link, Text]
+model Page {
+  object   String    @default("page") // 상위에 정의한 타입들이 될 예정
+  id       String    @id  uuid
+  cover    Image?  // 상위 헤더에 커버 이미지가 될예정
+  icon     String? // 상위 헤더에 아이콘이 될 예정
+  property Property? //헤더용 이름과 설명이 될 예정
+  name     String // document.title
+  url      String // /pageId/BlockId구조를 가질 예정
+  children Block[] 
+}
 
+type Block { 하나의 row가 될 예정
+  object       String  @default("block") // 상위에 정의한 타입들이 될 예정
+  type         String // HTML 태그가 될 예정 추후에 React로 커스텀한 Tag도 추가할 예정
+  content      Text 안에 들어갈 태그들이 될 예정
+  has_children Boolean @default(false) 
+  children Block  ?
+}
+
+type Image {
+  link Link // imageUrl 
+  name String // 이미지의 이름 alter로 쓸 예정
+}
+
+type Link {
+  url String // url
+}
+
+type Property {
+  Name        Text //Header(레이아웃)용 타이틀 제목
+  Description Text? //Header(레이아웃)용 타이틀 설명
+}
+
+type Text {
+  type        String // HTML태그
+  text        TextContent[] // dangerousHtml이 될예정
+  annotations Annotations // 스타일들
+  checked     Boolean?    @default(false)
+  language    String?
+}
+
+type Annotations {
+  classes String[] //TailWindCSS의 클래스네임이 들어갈 예정
+  color     String? // 폰트 칼라는 따로 필요할 거같아 추가
+}
+
+type TextContent {
+  type String //Comment가생각나서 추가
+  content String 안에 들어갈 글자
+  link    Link?
+}
